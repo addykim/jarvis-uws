@@ -1,25 +1,27 @@
 {
-  "name": "Jarvis",
-  "version": "0.0.0",
-  "private": true,
-  "author": "Addy Kim <soyaddyk@gmail.com>",
-  "description": "A simple helpful robot for your Company",
+  "name": "messenger-get-started",
+  "version": "1.0.0",
+  "description": "Get started example for Messenger Platform",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "lint": "jshint --exclude node_modules .",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/fbsamples/messenger-platform-samples.git"
+  },
+  "author": "Facebook",
+  "license": "ISC",
   "dependencies": {
-    "hubot": "^2.16.0",
-    "hubot-diagnostics": "0.0.1",
-    "hubot-google-images": "^0.2.2",
-    "hubot-google-translate": "^0.2.0",
-    "hubot-help": "^0.1.1",
-    "hubot-heroku-keepalive": "^1.0.0",
-    "hubot-maps": "0.0.2",
-    "hubot-pugme": "^0.1.0",
-    "hubot-redis-brain": "0.0.3",
-    "hubot-rules": "^0.1.1",
-    "hubot-scripts": "^2.16.2",
-    "hubot-shipit": "^0.2.0",
-    "hubot-slack": "^3.4.1"
+    "body-parser": "^1.15.0",
+    "config": "^1.20.4",
+    "ejs": "^2.4.2",
+    "express": "^4.13.4",
+    "request": "^2.72.0"
   },
   "engines": {
-    "node": "0.10.x"
+    "node": "~4.1.2"
   }
 }
