@@ -34,3 +34,8 @@ An example of the "Send to Messenger" plugin and "Message Us" plugin are located
 ## License
 
 See the LICENSE file in the root directory of this source tree. Feel free to useand modify the code.
+
+
+## References
+- [How to get started with Facebook Messenger Bot](http://x-team.com/2016/04/how-to-get-started-with-facebook-messenger-bots/)
+- [Messenger Bot Tutorials](https://github.com/jw84/messenger-bot-tutorial)
