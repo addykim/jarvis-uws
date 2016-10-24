@@ -77,12 +77,20 @@ const weather_token = process.env.WEATHER_API
 
 function getWeatherInformation(sender) {
   let weather_api_url = 'http://api.openweathermap.org/data/2.5/weather?q=Austin&APPID=' + weather_token
+  let options = {
+    url: weather_api_url,
+    method: 'GET',
+    json: true
+  }
   request(weather_api_url, function(error, response, body){
     if (error) 
       console.log(error);
     else {
-      console.log(body);
-      sendTextMessage(sender, body)
+      let parsed = JSON.parse(body)
+      let report = "Today the temperature will be a low of " + 
+          parsed.main.temp_min + 
+          " and a high of " + parsed.main.temp_max
+      sendTextMessage(sender, report)
     }
   });
 }
