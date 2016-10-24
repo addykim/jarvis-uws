@@ -90,7 +90,8 @@ function getWeatherInformation(sender) {
       let report = "Today the temperature will be a low of " + 
           convertKelvinToFarenheit(parsed.main.temp_min) + 
           " and a high of " + 
-          convertKelvinToFarenheit(parsed.main.temp_max)
+          convertKelvinToFarenheit(parsed.main.temp_max) + 
+          ". There will be " + parsed.weather[0].description
       sendTextMessage(sender, report)
     }
   });
