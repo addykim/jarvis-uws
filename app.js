@@ -34,15 +34,17 @@ app.post('/webhook/', function (req, res) {
     let sender = event.sender.id
     if (event.message && event.message.text) {
       let text = event.message.text
-      if (text === 'Generic') {
-        sendGenericMessage(sender)
-        continue
+      if (text == 'weather') {
+        getWeatherInformation(sender)
+        sendTextMessage(sender, "Weather received")
+        // sendTextMessage(sender, getWeatherInformation(sender))
+      } else {
+        sendTextMessage(sender, "Text received, echo: " + text.substring(0, 200))
       }
-      sendTextMessage(sender, "Text received, echo: " + text.substring(0, 200))
     }
     if (event.postback) {
       let text = JSON.stringify(event.postback)
-      sendTextMessage(sender, "Postback received: "+text.substring(0, 200), token)
+      sendTextMessage(sender, "Postback received: " + text.substring(0, 200), token)
       continue
     }
   }
@@ -69,6 +71,20 @@ function sendTextMessage(sender, text) {
       console.log('Error: ', response.body.error)
     }
   })
+}
+
+const weather_token = process.env.WEATHER_API
+
+function getWeatherInformation(sender) {
+  let weather_api_url = 'http://api.openweathermap.org/data/2.5/weather?q=Austin&APPID=' + weather_token
+  request(weather_api_url, function(error, response, body){
+    if (error) 
+      console.log(error);
+    else {
+      console.log(body);
+      sendTextMessage(sender, body)
+    }
+  });
 }
 
 function sendGenericMessage(sender) {
@@ -120,7 +136,7 @@ function sendGenericMessage(sender) {
   })
 }
 
-// spin spin sugar
+//launch app 
 app.listen(app.get('port'), function() {
   console.log('running on port', app.get('port'))
 })
