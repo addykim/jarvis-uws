@@ -42,32 +42,36 @@ app.post('/webhook/', function (req, res) {
             "quick_replies": [
               {
                 "content_type": "text",
-                "title": "1 minute (debugging",
-                "payload": "WTF is a payload?"
+                "title": "1 minute (debugging)",
+                "payload": "60"
               },
               {
                 "content_type": "text",
                 "title": "1 hour",
-                "payload": "WTF is a payload?"
+                "payload": "3600"
               },
               {
                 "content_type": "text",
                 "title": "4 hours",
-                "payload": "WTF is a payload?"
+                "payload": "14400"
               },
               {
                 "content_type": "text",
                 "title": "12 hours",
-                "payload": "WTF is a payload?"
+                "payload": "43200"
               },
               {
                 "content_type": "text",
                 "title": "24 hours",
-                "payload": "WTF is a payload?"
+                "payload": "86400"
               }
             ]
           } 
         sendPayloadMessage(sender, messageData)
+      } else if (text == '1 minute (debugging)') {
+        sendTextMessage(sender, "I'll send you a message every minute for the next 5 minutes")
+        for (let i = 0; i < 5; i++)
+          setInterval(getWeatherInformation(sender), 60000)
       } else {
         sendTextMessage(sender, "Text received, echo: " + text.substring(0, 200))
       }
