@@ -36,8 +36,38 @@ app.post('/webhook/', function (req, res) {
       let text = event.message.text
       if (text == 'weather') {
         getWeatherInformation(sender)
-        sendTextMessage(sender, "Weather received")
-        // sendTextMessage(sender, getWeatherInformation(sender))
+      } else if (text == 'subscribe') {
+          let messageData = {
+            "text":"How frequent should I send you weather updates?",
+            "quick_replies": [
+              {
+                "content_type": "text",
+                "title": "1 minute (debugging",
+                "payload": "WTF is a payload?"
+              },
+              {
+                "content_type": "text",
+                "title": "1 hour",
+                "payload": "WTF is a payload?"
+              },
+              {
+                "content_type": "text",
+                "title": "4 hours",
+                "payload": "WTF is a payload?"
+              },
+              {
+                "content_type": "text",
+                "title": "12 hours",
+                "payload": "WTF is a payload?"
+              },
+              {
+                "content_type": "text",
+                "title": "24 hours",
+                "payload": "WTF is a payload?"
+              }
+            ]
+          } 
+        sendPayloadMessage(sender, messageData)
       } else {
         sendTextMessage(sender, "Text received, echo: " + text.substring(0, 200))
       }
@@ -109,38 +139,7 @@ function convertKevlinToCelsius(kelvin) {
   return kelvin - 273.15
 }
 
-function sendGenericMessage(sender) {
-  let messageData = {
-    "attachment": {
-      "type": "template",
-      "payload": {
-        "template_type": "generic",
-        "elements": [{
-          "title": "First card",
-          "subtitle": "Element #1 of an hscroll",
-          "image_url": "http://messengerdemo.parseapp.com/img/rift.png",
-          "buttons": [{
-            "type": "web_url",
-            "url": "https://www.messenger.com",
-            "title": "web url"
-          }, {
-            "type": "postback",
-            "title": "Postback",
-            "payload": "Payload for first element in a generic bubble",
-          }],
-        }, {
-          "title": "Second card",
-          "subtitle": "Element #2 of an hscroll",
-          "image_url": "http://messengerdemo.parseapp.com/img/gearvr.png",
-          "buttons": [{
-            "type": "postback",
-            "title": "Postback",
-            "payload": "Payload for second element in a generic bubble",
-          }],
-        }]
-      }
-    }
-  }
+function sendPayloadMessage(sender, messageData) {
   request({
     url: 'https://graph.facebook.com/v2.6/me/messages',
     qs: {access_token:token},
