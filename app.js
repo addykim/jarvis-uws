@@ -88,11 +88,16 @@ function getWeatherInformation(sender) {
     else {
       let parsed = JSON.parse(body)
       let report = "Today the temperature will be a low of " + 
-          parsed.main.temp_min + 
-          " and a high of " + parsed.main.temp_max
+          convertKelvinToFarenheit(parsed.main.temp_min) + 
+          " and a high of " + 
+          convertKelvinToFarenheit(parsed.main.temp_max)
       sendTextMessage(sender, report)
     }
   });
+}
+
+function convertKelvinToFarenheit(kelvin) {
+  return kelvin *  9/5 - 459.67
 }
 
 function sendGenericMessage(sender) {
