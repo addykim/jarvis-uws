@@ -100,6 +100,10 @@ function convertKelvinToFarenheit(kelvin) {
   return kelvin *  9/5 - 459.67
 }
 
+function convertKevlinToCelsius(kelvin) {
+  return kelvin - 273.15
+}
+
 function sendGenericMessage(sender) {
   let messageData = {
     "attachment": {
