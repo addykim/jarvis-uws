@@ -71,7 +71,7 @@ app.post('/webhook/', function (req, res) {
       } else if (text == '1 minute (debugging)') {
         sendTextMessage(sender, "I'll send you a message every minute for the next 5 minutes")
         for (let i = 0; i < 5; i++)
-          setInterval(getWeatherInformation(sender), 60000)
+          setTimeout(getWeatherInformation(sender), 60000)
       } else {
         sendTextMessage(sender, "Text received, echo: " + text.substring(0, 200))
       }
@@ -121,6 +121,8 @@ function getWeatherInformation(sender) {
       console.log(error);
     else {
       let parsed = JSON.parse(body)
+      console.log("low " + parsed.main.temp_min)
+      console.log("high " + parsed.main.temp_max)
       let report = "Today the temperature will be a low of " + 
           convertKelvinToFarenheit(parsed.main.temp_min) + 
           " and a high of " + 
@@ -136,7 +138,7 @@ function getWeatherInformation(sender) {
 }
 
 function convertKelvinToFarenheit(kelvin) {
-  return kelvin *  9/5 - 459.67
+  return kelvin * 9/5 - 459.67
 }
 
 function convertKevlinToCelsius(kelvin) {
