@@ -34,7 +34,11 @@ app.post('/webhook/', function (req, res) {
     let sender = event.sender.id
     if (event.message && event.message.text) {
       let text = event.message.text
-      if (text == 'weather') {
+      if (text == 'hi' || text == 'hello') {
+        sendTextMessage(sender, "Hello! I am currently in test mode. I have no natural language processing at the moment so at the moment either.")
+        sendTextMessage(sender, "There are only a few commands I will respond to. Otherwise I will just echo your command")
+        sendTextMessage(sender, "Commands I will respond to are: subscribe, weather, hi, hello.")
+      } else if (text == 'weather') {
         getWeatherInformation(sender)
       } else if (text == 'subscribe') {
           let messageData = {
