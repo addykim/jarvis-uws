@@ -35,9 +35,7 @@ app.post('/webhook/', function (req, res) {
     if (event.message && event.message.text) {
       let text = event.message.text
       if (text == 'hi' || text == 'hello') {
-        sendTextMessage(sender, "Hello! I am currently in test mode. I have no natural language processing at the moment so at the moment either.")
-        sendTextMessage(sender, "There are only a few commands I will respond to. Otherwise I will just echo your command")
-        sendTextMessage(sender, "Commands I will respond to are: subscribe, weather, hi, hello.")
+        sendTextMessage(sender, "Hello!")
       } else if (text == 'weather') {
         getWeatherInformation(sender)
       } else if (text == 'subscribe') {
@@ -77,7 +75,9 @@ app.post('/webhook/', function (req, res) {
         for (let i = 0; i < 5; i++)
           setTimeout(getWeatherInformation(sender), 60000)
       } else {
-        sendTextMessage(sender, "Text received, echo: " + text.substring(0, 200))
+        sendTextMessage(sender, "Hello! I am currently in test mode. I have no natural language processing at the moment so at the moment either.")
+        sendTextMessage(sender, "There are only a few commands I will respond to. Otherwise I will just echo your command")
+        sendTextMessage(sender, "Commands I will respond to are: subscribe, weather, hi, hello.")
       }
     }
     if (event.postback) {
