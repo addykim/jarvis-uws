@@ -142,11 +142,11 @@ function getWeatherInformation(sender) {
 }
 
 function convertKelvinToFarenheit(kelvin) {
-  return kelvin * 9/5 - 459.67
+  return Math.round((kelvin * 9/5 - 459.67) * 10) /10
 }
 
 function convertKevlinToCelsius(kelvin) {
-  return kelvin - 273.15
+  return Math.round((kelvin - 273.15) * 10) / 10
 }
 
 function sendPayloadMessage(sender, messageData) {
