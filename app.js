@@ -75,8 +75,8 @@ app.post('/webhook/', function (req, res) {
         for (let i = 0; i < 5; i++)
           setTimeout(getWeatherInformation(sender), 60000)
       } else {
-        sendTextMessage(sender, "Hello! I am currently in test mode. I have no natural language processing at the moment so at the moment either.")
-        sendTextMessage(sender, "There are only a few commands I will respond to. Otherwise I will just echo your command")
+        sendTextMessage(sender, "Hello! I am currently in test mode. I have no natural language processing at the moment.")
+        sendTextMessage(sender, "There are only a few commands I will respond to. Otherwise I will just echo your command.")
         sendTextMessage(sender, "Commands I will respond to are: subscribe, weather, hi, hello.")
       }
     }
