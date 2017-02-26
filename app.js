@@ -114,7 +114,9 @@ function sendTextMessage(sender, text) {
 const weather_token = process.env.WEATHER_API
 
 function getWeatherInformation(sender) {
-  let weather_api_url = 'http://api.openweathermap.org/data/2.5/weather?q=Austin&APPID=' + weather_token
+  let zip_code = 78705
+  let country_code = 'us'
+  let weather_api_url = 'http://api.openweathermap.org/data/2.5/weather?zip=' + zip_code + ',' + country_code + '&APPID=' + weather_token
   let options = {
     url: weather_api_url,
     method: 'GET',
