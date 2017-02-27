@@ -4,6 +4,7 @@ const express = require('express')
 const bodyParser = require('body-parser')
 const request = require('request')
 const app = express()
+const utils = require('./lib/utils.js')
 
 app.set('port', (process.env.PORT || 5000))
 
@@ -130,9 +131,9 @@ function getWeatherInformation(sender) {
       console.log("low " + parsed.main.temp_min)
       console.log("high " + parsed.main.temp_max)
       let report = "Today the temperature will be a low of " + 
-          convertKelvinToFarenheit(parsed.main.temp_min) + 
+          utils.convertKelvinToFarenheit(parsed.main.temp_min) + 
           " and a high of " + 
-          convertKelvinToFarenheit(parsed.main.temp_max) + "."
+          utils.convertKelvinToFarenheit(parsed.main.temp_max) + "."
       report = report + " There will be "    
       parsed.weather.forEach(function(weather) {
        console.log(weather);
@@ -143,13 +144,6 @@ function getWeatherInformation(sender) {
   });
 }
 
-function convertKelvinToFarenheit(kelvin) {
-  return Math.round((kelvin * 9/5 - 459.67) * 10) /10
-}
-
-function convertKevlinToCelsius(kelvin) {
-  return Math.round((kelvin - 273.15) * 10) / 10
-}
 
 function sendPayloadMessage(sender, messageData) {
   request({
